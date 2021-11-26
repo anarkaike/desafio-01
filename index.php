@@ -220,7 +220,8 @@ class CalcWaterCapacity
         $this->draw(function($black, $water, $empty, $value){
             echo '<div class="column">';
             echo str_repeat('<div></div>', $empty);
-            echo str_repeat('<div class="water"></div>', $water);
+            if ($water > 1) echo str_repeat('<div class="water"></div>', $water -1);
+            if ($water >= 1) echo '<div class="water">' . $water . '</div>';
             echo str_repeat('<div class="black"></div>', $black);
             echo "<div></div><div>$value</div>";
             echo '</div>';
@@ -230,6 +231,7 @@ class CalcWaterCapacity
     }
 }
 
+// Cases presented in the test
 $arr = [
     [7, 10, 2, 5, 13, 3, 4, 1, 5, 9],
     [5, 4, 3, 2, 1, 2, 3, 4, 5],
@@ -241,6 +243,7 @@ $arr = [
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 ];
 
+// Result for cases
 foreach ($arr as $key => $val) {
     $CalcWaterCapacity = new CalcWaterCapacity($val);
 
